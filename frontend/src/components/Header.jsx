@@ -100,6 +100,15 @@ const Header = ({ title, onProfileClick, toggleSidebar }) => {
                                 </motion.span>
                             )}
                         </button>
+
+                        <AnimatePresence>
+                            {isNotifOpen && (
+                                <NotificationDropdown
+                                    onClose={() => setIsNotifOpen(false)}
+                                    onCountChange={(count) => setUnreadCount(count)}
+                                />
+                            )}
+                        </AnimatePresence>
                     </div>
 
                     <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 mx-1 sm:mx-2 hidden xs:block" />

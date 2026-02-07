@@ -41,12 +41,18 @@ async def mark_attendance(attendance: AttendanceModel = Body(...)):
     new_attendance = await db["attendance"].insert_one(attendance_data)
     created_attendance = await db["attendance"].find_one({"_id": new_attendance.inserted_id})
 
-    # Trigger Notification for Absence
+    # Trigger Notification for Attendance
     if created_attendance["status"] == "Absent":
         await create_notification(
             title="Employee Absent Alert",
-            message=f"{employee['full_name']} ({attendance.employee_id}) has been marked as Absent for today.",
+            message=f"{employee['full_name']} has been marked as Absent for today.",
             n_type="warning"
+        )
+    else:
+        await create_notification(
+            title="Attendance Marked",
+            message=f"{employee['full_name']} has been marked as Present.",
+            n_type="success"
         )
 
     return created_attendance

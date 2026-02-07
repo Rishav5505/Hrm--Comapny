@@ -41,7 +41,7 @@ const Header = ({ title, onProfileClick, toggleSidebar }) => {
     useEffect(() => {
         loadProfile();
         fetchUnread();
-        const interval = setInterval(fetchUnread, 10000);
+        const interval = setInterval(fetchUnread, 5000); // Check every 5 seconds
         window.addEventListener('adminProfileUpdated', loadProfile);
         return () => {
             clearInterval(interval);

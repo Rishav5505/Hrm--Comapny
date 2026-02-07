@@ -10,6 +10,8 @@ origins = [
     "http://localhost:5174",
     "http://localhost:5175",
     "http://localhost:3000",
+    "https://hrm-comapny.vercel.app",
+    "https://hrm-comapny-*.vercel.app",
 ]
 
 app.add_middleware(
